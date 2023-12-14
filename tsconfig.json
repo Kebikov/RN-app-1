@@ -1,0 +1,11 @@
+{
+    "extends": "expo/tsconfig.base",
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "baseUrl": ".", // Указание базового URL
+        "paths": {
+            "@/*": ["./app/*"] // Как сокрошаем "@/*" и где это будет находится ["./app/*"]
+        }
+    }
+}
