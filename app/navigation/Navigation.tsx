@@ -12,9 +12,9 @@ const Navigation: FC = () => {
 		<NavigationContainer>
 			<Stack.Navigator
 				screenOptions={{
-                    headerShown: false,
+					headerShown: false,
 					contentStyle: {
-						backgroundColor: 'red'
+						backgroundColor: 'black'
 					}
 				}}
 			>
@@ -22,6 +22,7 @@ const Navigation: FC = () => {
 					<Stack.Screen
 						name={route.name}
 						component={route.component}
+						options={route?.options ?? {}}
 						key={route.name}
 					/>
 				))}
@@ -31,3 +32,5 @@ const Navigation: FC = () => {
 };
 
 export default Navigation;
+
+

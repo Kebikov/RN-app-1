@@ -1,16 +1,17 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import { Pressable, Text, View } from 'react-native';
+import {FC} from 'react';
 import useTypedNavigation from '@/hooks/useTypedNavigation';
-import { TypeRootStackParamList } from '@/navigation/navigation.types';
+import ButtonExit from '@/components/ButtonExit/ButtonExit';
 
-const Home = () => {
+
+const Home: FC = () => {
     const {navigate} = useTypedNavigation();
 
 	return (
-		<View>
+		<View className='mt-10'>
 			<Text>Home</Text>
 			<Pressable onPress={() => navigate('Auth')}>
-                <Text>Go to Login</Text>
+                <Text style={{color: 'white'}}>Go to Login</Text>
             </Pressable>
 		</View>
 	);
@@ -18,4 +19,3 @@ const Home = () => {
 
 export default Home;
 
-const styles = StyleSheet.create({});

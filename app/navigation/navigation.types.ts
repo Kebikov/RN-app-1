@@ -12,5 +12,10 @@ type TypeRootStackAdminList = {
 export interface IRoute {
     name: keyof TypeRootStackParamList,
     component: ComponentType
-    isAdmin?: boolean
+    isAdmin?: boolean,
+    options?: Options | {}
+}
+
+type Options = {
+    animation: 'default' | 'fade' | 'slide_from_right' | 'slide_from_left' | 'slide_from_bottom' | 'slide_from_top'
 }

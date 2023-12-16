@@ -9,7 +9,12 @@ export const userRoutes: IRoute[] = [
     },
     {
         name: 'Auth',
-        component: Auth
+        component: Auth,
+        options: {
+                animation: 'slide_from_right',
+        }
     }
 ];
+
+
 
