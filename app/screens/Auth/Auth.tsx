@@ -21,7 +21,7 @@ const Auth: FC = () => {
     const [isReg, setIsReg] = useState<boolean>(false);
 
     const {handleSubmit, reset, control} = useForm<IAuthFormData>({
-        mode: 'onChange'
+        mode: 'onChange',
     });
 
     const onSubmit: SubmitHandler<IAuthFormData> = data => {

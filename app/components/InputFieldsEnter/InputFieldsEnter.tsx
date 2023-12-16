@@ -1,20 +1,15 @@
 import { View, TextInput, StyleSheet, Text, Pressable } from 'react-native';
 import { FC } from 'react';
 import { useController, Control } from 'react-hook-form';
+import { IAuthFormData } from '@/shared/types/auth.interface';
 
-type FormValue = {
-    email: string,
-    password: string
-}
-
-type NameFormValue = keyof FormValue;
 
 interface IInputFieldsEnterProps {
     /**
      * Состояние зарегистрирован ли пользователь.
      */
     isReg: boolean,
-    control: Control<FormValue>
+    control: Control<IAuthFormData>
 }
 
 /**
@@ -39,8 +34,11 @@ interface IInputProps {
     /**
      * Имя поля.
      */
-    name: NameFormValue,
-    control: Control<FormValue>,
+    name: keyof IAuthFormData,
+    control: Control<IAuthFormData>,
+    /**
+     * Размер отступа с низу.
+     */
     marginBottom?: number
 }
 
@@ -51,6 +49,10 @@ const Input: FC<IInputProps> = ({name, control, marginBottom = 0}) => {
         defaultValue: '',
         name
     });
+
+    const onInput = () => {
+        console.log(field);
+    }
 
     return(
         <TextInput
