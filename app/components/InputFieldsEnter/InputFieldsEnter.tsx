@@ -1,26 +1,66 @@
 import { View, TextInput, StyleSheet, Text, Pressable } from 'react-native';
-import { ElementType, FC } from 'react';
+import { FC } from 'react';
+import { useController, Control } from 'react-hook-form';
+
+type FormValue = {
+    email: string,
+    password: string
+}
+
+type NameFormValue = keyof FormValue;
+
+interface IInputFieldsEnterProps {
+    /**
+     * Состояние зарегистрирован ли пользователь.
+     */
+    isReg: boolean,
+    control: Control<FormValue>
+}
 
 /**
- * Component > поля ввода логина и пароля.
- * @returns {ElementType}
+ * @component
+ * Поля ввода логина и пароля.
+ * @param {boolean} isReg - Состояние зарегистрирован ли пользователь.
+ * @example <InputFieldsEnter isReg={isReg} />
+ * @returns {Element}
  */
-const InputFieldsEnter: FC = () => {
+const InputFieldsEnter: FC<IInputFieldsEnterProps> = ({isReg, control}) => {
+
 	return (
 		<View style={style.box}>
-            <Text style={style.login} >Login</Text>
-            <TextInput
-                placeholder="Enter email"
-                placeholderTextColor="#4F4F51"
-                style={[style.input, {marginBottom: 12}]}
-            />
-            <TextInput
-                placeholder="Enter password"
-                placeholderTextColor="#4F4F51"
-                style={style.input}
-            />
+            <Text style={style.login} >{isReg ? 'Register' : 'Login'}</Text>
+            <Input name='email' control={control} marginBottom={12}/>
+            <Input name='password' control={control}/>
 		</View>
 	);
+};
+
+interface IInputProps {
+    /**
+     * Имя поля.
+     */
+    name: NameFormValue,
+    control: Control<FormValue>,
+    marginBottom?: number
+}
+
+const Input: FC<IInputProps> = ({name, control, marginBottom = 0}) => {
+
+    const {field} = useController({
+        control,
+        defaultValue: '',
+        name
+    });
+
+    return(
+        <TextInput
+            value={field.value}
+            onChangeText={field.onChange}
+            placeholder="Enter email"
+            placeholderTextColor="#4F4F51"
+            style={[style.input, {marginBottom}]}
+        />
+    );
 };
 
 const style = StyleSheet.create({

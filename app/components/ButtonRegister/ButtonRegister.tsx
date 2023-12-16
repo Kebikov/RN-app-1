@@ -1,13 +1,24 @@
 import { Pressable, Text, StyleSheet } from 'react-native';
-import {ElementType, FC} from 'react';
+import {FC} from 'react';
+
+interface IButtonRegisterProps {
+    /**
+     * Функция изминения state.
+     */
+    setIsReg: Function
+}
 
 /**
- * Component > кнопка регистрации.
- * @returns {ElementType}
+ * @component
+ * Кнопка регистрации.
+ * @param setIsReg - Функция изминения state.
+ * @example <ButtonRegister setIsReg={setIsReg} />
+ * @returns {JSX.Element}
  */
-const ButtonRegister: FC = () => {
+const ButtonRegister: FC<IButtonRegisterProps> = ({setIsReg}) => {
+
 	return (
-		<Pressable style={style.box}>
+		<Pressable style={style.box} onPress={() => setIsReg((isReg: boolean) => !isReg)}>
             <Text style={style.register}>Register</Text>
         </Pressable>
 	);
